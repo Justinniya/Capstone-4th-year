@@ -1,0 +1,31 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.header {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+}
+a{
+    text-decoration: none;
+    padding: 5px;
+    width: auto;
+    border-radius: 5px;
+    color: rgb(13, 13, 110);
+    margin: 5px;
+}
