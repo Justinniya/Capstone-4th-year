@@ -8,8 +8,13 @@
 </head>
 <body>
     <div class="header">
-        <h1>DashBoard</h1>
+        <h1>DashBoard</h1><br>
+        
     </div>
+    <div class="add_students">
+        <a  href="/add_students">Add Student</a>
+    </div>
+    
     <table>
         <thead>
             <tr>
@@ -31,7 +36,7 @@
                 <td>{{i[3]}}</td>
                 <td>{{i[4]}}</td>
                 <td>{{i[5]}}</td>
-                <td><a style="background-color: #45f311; " href="{{i[0]}}">Confirm</a><a style="background-color: #114df3; " href="{{i[0]}}">View</a><a style="background-color: #dd2c0d; " href="{{i[0]}}">Delete</a></td>
+                <td><a style="background-color: #45f311; " href="{{i[0]}}">Confirm</a><a style="background-color: #114df3; " href="{{i[0]}}">View</a><a style="background-color: #dd2c0d; " href="delete/{{i[0]}}">Delete</a></td>
             </tr>
             {%endfor%}
     </table>

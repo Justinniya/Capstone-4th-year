@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Monitoring System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        form {
+            width: 50%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        #submit {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        #submit :hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Student Monitoring System</h2>
+
+    <!-- Student Form -->
+    <form id="/add_students" method="POST">
+        <h3>Add Student</h3>
+        <input type="text" name="fullname" placeholder="Name" required>
+        <input type="number" name="age" placeholder="Age" required>
+        <select name="year">
+            <option value="1st">1st Year</option>
+            <option value="2nd">2nd Year</option>
+            <option value="3rd">3rd Year</option>
+            <option value="4th" selected>4th Year</option>
+        </select>
+        <input type="text" name="section" placeholder="Section" required>
+        <input type="text" name="major" placeholder="Major" required>
+        <select name="status">
+            <option value="Ongoing">Ongoing</option>
+            <option value="Graduating">Graduating</option>
+            <option value="Delayed">Delayed</option>
+        </select>
+        <input id="submit" type="submit" value="Add Students">
+    </form>
+
+    <script>
+        function addStudent() {
+            // Get form values
+            let name = document.getElementById('name').value;
+            let age = document.getElementById('age').value;
+            let year = document.getElementById('year').value;
+            let section = document.getElementById('section').value;
+            let major = document.getElementById('major').value;
+            let status = document.getElementById('status').value;
+
+            // Check if fields are empty
+            if (name === "" || age === "" || section === "" || major === "") {
+                alert("Please fill in all fields.");
+                return;
+            }
+        }
+    </script>
+
+</body>
+</html>
