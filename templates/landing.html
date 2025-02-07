@@ -4,9 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phinma 4th Year Monitoring System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/landing.css') }}">
 </head>
 <body>
-    <h1>Welcome to Phinma 4th Year Monitoring System</h1>
-    <button onclick="window.location.href='/login'">Log in</button>
+    <div class="flex-container">
+        <div class="image-section">
+            <h1>Welcome to Phinma_UI <br> 4th Year Monitoring System</h1>
+            <img src="{{ url_for('static', filename='img/gif.gif') }}" alt="Logo">
+        </div>
+
+        <div class="login-section">
+
+            <div class="form-container">
+                <h2>Log In To Continue</h1>
+                <form action="/login" method="POST">
+                    <input type="text" name="username" class="styled-input" placeholder="Username"><br>
+                    <input type="password" name="password" class="styled-input" placeholder="Password"><br>
+                    <input type="submit" class="login-btn" value="Log in">
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

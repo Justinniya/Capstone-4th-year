@@ -1,6 +1,7 @@
 table {
     width: 100%;
     border-collapse: collapse;
+    text-align: center;
 }
 
 th, td {
@@ -37,6 +38,7 @@ a{
 .add_students a{
     height: auto;
     background-color: aqua;
+    margin-right: 140px;
 }
 
 table {
@@ -60,4 +62,15 @@ tr:nth-child(even) {
 }
 tr:hover {
     background-color: #ddd;
+}
+.btn-view {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.btn-view:hover {
+    background-color: #0056b3;
 }
