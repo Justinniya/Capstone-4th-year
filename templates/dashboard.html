@@ -3,46 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/dashboard.css')}}">
+    <title>Phinma 4th Year Monitoring System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>DashBoard</title>
+    <style>
+
+    </style>
 </head>
 <body>
-    <div class="header">
-        <h1>DashBoard</h1><br>
-        
-    </div>
-    <div class="add_students">
-        <a  href="/add_students">Add Student</a>
-    </div>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>UI ID</th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Year</th>
-                <th>Section</th>
-                <th>Major</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {%for i in students%}
-            <tr>
-                <td>{{i[0]}}</td>
-                <td>{{i[1]}}</td>
-                <td>{{i[2]}}</td>
-                <td>{{i[3]}}</td>
-                <td>{{i[4]}}</td>
-                <td>{{i[5]}}</td>
-                <td>{{i[6]}}</td>
-                <td><a style="background-color: #45f311; " href="/confirm/{{i[0]}}">Confirm</a><button class="btn-view" onclick="viewDetails('{{i[0]}}','{{i[1]}}','{{i[2]}}', '{{i[3]}}', '{{i[4]}}', '{{i[5]}}', '{{i[6]}}')">View</button><a style="background-color: #dd2c0d; " href="delete/{{i[0]}}">Delete</a></td>
-            </tr>
-            {%endfor%}
+    <div class="container">
+        <div class="header">DashBoard</div>
+        <div class="add_students">
+            <a href="/add_students">Add Student</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 150px;">UI ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Year</th>
+                    <th>Section</th>
+                    <th>Major</th>
+                    <th>Status</th>
+                    <th style="width: 300px;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in students %}
+                <tr>
+                    <td>{{ i[0] }}</td>
+                    <td>{{ i[1] }}</td>
+                    <td>{{ i[2] }}</td>
+                    <td>{{ i[3] }}</td>
+                    <td>{{ i[4] }}</td>
+                    <td>{{ i[5] }}</td>
+                    <td>{{ i[6] }}</td>
+                    <td class="action-buttons">
+                        <a class="btn-confirm" href="/confirm/{{ i[0] }}">Confirm</a>
+                        <button class="btn-view" onclick="viewDetails('{{ i[0] }}','{{ i[1] }}','{{ i[2] }}', '{{ i[3] }}', '{{ i[4] }}', '{{ i[5] }}', '{{ i[6] }}')">View</button>
+                        <a class="btn-delete" href="/delete/{{ i[0] }}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
+    </div>
+
 
         <!-- Bootstrap Modal for Viewing Student Details -->
         <div class="modal fade" id="studentModal" tabindex="-1" aria-labelledby="studentModalLabel" aria-hidden="true">

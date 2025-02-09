@@ -4,22 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phinma 4th Year Monitoring System</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='/css/landing.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}"> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #4b6cb7, #182848);
+        }
+        .flex-container {
+            display: flex;
+            width: 80%;
+            max-width: 1000px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        .image-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .login-section {
+            flex: 1;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .styled-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            background: #4b6cb7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .login-btn:hover {
+            background: #182848;
+        }
+        @media (max-width: 768px) {
+            .flex-container {
+                flex-direction: column;
+            }
+            .image-section, .login-section {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="flex-container">
         <div class="image-section">
-            <h1>Welcome to Phinma_UI <br> 4th Year Monitoring System</h1>
+            <h1>Phinma_UI <br> 4th Year Monitoring System</h1>
             <img src="{{ url_for('static', filename='img/gif.gif') }}" alt="Logo">
         </div>
 
         <div class="login-section">
-
             <div class="form-container">
-                <h2>Log In To Continue</h1>
+                <h2>Log In To Continue</h2>
                 <form action="/login" method="POST">
-                    <input type="text" name="username" class="styled-input" placeholder="Username"><br>
-                    <input type="password" name="password" class="styled-input" placeholder="Password"><br>
+                    <input type="text" name="username" class="styled-input" placeholder="Username" required>
+                    <input type="password" name="password" class="styled-input" placeholder="Password" required>
                     <input type="submit" class="login-btn" value="Log in">
                 </form>
             </div>

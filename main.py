@@ -30,7 +30,7 @@ def login():
 @app.route('/dashboard')
 def dashboard():
     cursor = mysql.connection.cursor()
-    cursor.execute("SELECT * FROM students ORDER BY name")
+    cursor.execute("SELECT * FROM students WHERE confirmation != '1' AND status = 'Graduating' ORDER BY name")
     students = cursor.fetchall()
 
     return render_template("dashboard.html", students=students)
@@ -53,8 +53,9 @@ def add_student():
 
 @app.route('/confirm/<string:id>', methods=["GET"])
 def confirmation(id):
+    print(id)
     cursor = mysql.connection.cursor()
-    cursor.execute(f"UPDATE students SET confirmation = '1' WHERE ui_id = {id}")
+    cursor.execute(f"UPDATE students SET confirmation = '1' WHERE ui_id = '{id}'")
     mysql.connection.commit()
     return redirect('/dashboard')
 
@@ -65,6 +66,14 @@ def delete(id):
     cursor.execute(f"DELETE FROM students WHERE ui_id = {id}")
     mysql.connection.commit()
     return redirect('/dashboard')
+
+@app.route('/graduating')
+def graduating():
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * FROM students WHERE status = 'Graduating' AND confirmation = '1' ORDER BY name")
+    students = cursor.fetchall()
+
+    return render_template("graduating_list.html", students=students)
 
 
 # main function
