@@ -42,20 +42,24 @@
 <body>
     <div class="container">
         <h2>Student Monitoring System</h2>
-        <form id="add_students" method="POST" enctype="multipart/form-data">
-            <input type="text" name="ui_id" placeholder="UI ID (Ex. 11-1111-111111)" required>
-            <input type="text" name="fullname" placeholder="Full Name" required>
-            <input type="number" name="age" placeholder="Age" required>
-            <select name="year">
+        <form action="/update/{{ result[0]}}" method="POST">
+            <input type="text" name="ui_id" placeholder="UI ID (Ex. 11-1111-111111)" required value="{{ result[0]}}">
+            <input type="text" name="fullname" placeholder="Full Name" required value="{{ result[1]}}">
+            <input type="number" name="age" placeholder="Age" required value="{{ result[2]}}">
+            <select name="year" value="{{ result[3]}}">
                 <option value="1st year">1st Year</option>
                 <option value="2nd year">2nd Year</option>
                 <option value="3rd year">3rd Year</option>
                 <option value="4th year" selected>4th Year</option>
             </select>
-            <input type="text" name="section" placeholder="Section" required>
-            <input type="text" name="major" placeholder="Major" required>
-            <input type="number" name="units" placeholder="Units" required> <!-- New Units Field -->
-            <select name="status">
+            <input type="text" name="section" placeholder="Section" required value="{{ result[4]}}">
+            <input type="text" name="major" placeholder="Major" required value="{{ result[5]}}">
+            {% if result[6] == 'Complete'%}
+            <input type="number" name="units" placeholder="Units" required value="120">
+            {% else %}
+            <input type="number" name="units" placeholder="Units" required value="{{ result[6]}}"> 
+            {%endif%}
+            <select name="status" value="{{ result[7]}}">
                 <option value="Ongoing">Ongoing</option>
                 <option value="Graduating">Graduating</option>
                 <option value="Delayed">Delayed</option>

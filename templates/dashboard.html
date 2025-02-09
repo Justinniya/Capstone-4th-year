@@ -7,15 +7,42 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .btn-add, .btn-graduating {
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            color: white;
+        }
+        .btn-add {
+            background-color: #007bff;
+        }
+        .btn-add:hover {
+            background-color: #0056b3;
+        }
+        .btn-graduating {
+            background-color: #28a745;
+        }
+        .btn-graduating:hover {
+            background-color: #1e7e34;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">DashBoard</div>
-        <div class="add_students">
-            <a href="/add_students">Add Student</a>
+
+        <!-- Buttons -->
+        <div class="button-container">
+            <a href="/add_students" class="btn-add">Add Student</a>
+            <a href="/graduating_list" class="btn-graduating">Graduating List</a>
         </div>
+
+        <!-- Student Table -->
         <table>
             <thead>
                 <tr>
@@ -25,6 +52,7 @@
                     <th>Year</th>
                     <th>Section</th>
                     <th>Major</th>
+                    <th>Units</th>  <!-- New Column -->
                     <th>Status</th>
                     <th style="width: 300px;">Action</th>
                 </tr>
@@ -38,11 +66,12 @@
                     <td>{{ i[3] }}</td>
                     <td>{{ i[4] }}</td>
                     <td>{{ i[5] }}</td>
-                    <td>{{ i[6] }}</td>
+                    <td>{{ i[6] }}</td>  <!-- New Column for Units -->
+                    <td>{{ i[7] }}</td>
                     <td class="action-buttons">
                         <a class="btn-confirm" href="/confirm/{{ i[0] }}">Confirm</a>
-                        <button class="btn-view" onclick="viewDetails('{{ i[0] }}','{{ i[1] }}','{{ i[2] }}', '{{ i[3] }}', '{{ i[4] }}', '{{ i[5] }}', '{{ i[6] }}')">View</button>
-                        <a class="btn-delete" href="/delete/{{ i[0] }}">Delete</a>
+                        <button class="btn-view" onclick="viewDetails('{{ i[0] }}','{{ i[1] }}','{{ i[2] }}', '{{ i[3] }}', '{{ i[4] }}', '{{ i[5] }}', '{{ i[6] }}', '{{ i[7] }}')">View</button>
+                        <a class="btn-delete" href="/update/{{ i[0] }}">Update</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -50,50 +79,51 @@
         </table>
     </div>
 
-
-        <!-- Bootstrap Modal for Viewing Student Details -->
-        <div class="modal fade" id="studentModal" tabindex="-1" aria-labelledby="studentModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="studentModalLabel">Student Details</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p><strong>UI ID:</strong> <span id="modalId"></span></p>
-                        <p><strong>Name:</strong> <span id="modalName"></span></p>
-                        <p><strong>Age:</strong> <span id="modalAge"></span></p>
-                        <p><strong>Year:</strong> <span id="modalYear"></span></p>
-                        <p><strong>Section:</strong> <span id="modalSection"></span></p>
-                        <p><strong>Major:</strong> <span id="modalMajor"></span></p>
-                        <p><strong>Status:</strong> <span id="modalStatus"></span></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
+    <!-- Bootstrap Modal for Viewing Student Details -->
+    <div class="modal fade" id="studentModal" style="text-align: center;" tabindex="-1" aria-labelledby="studentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="studentModalLabel">Student Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>UI ID:</strong> <span id="modalId"></span></p>
+                    <p><strong>Name:</strong> <span id="modalName"></span></p>
+                    <p><strong>Age:</strong> <span id="modalAge"></span></p>
+                    <p><strong>Year:</strong> <span id="modalYear"></span></p>
+                    <p><strong>Section:</strong> <span id="modalSection"></span></p>
+                    <p><strong>Major:</strong> <span id="modalMajor"></span></p>
+                    <p><strong>Units:</strong> <span id="modalUnits"></span></p> <!-- New Column in Modal -->
+                    <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-        <!-- Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        
-        <!-- JavaScript to Handle Modal -->
-        <script>
-            function viewDetails(ui_id,name, age, year, section, major, status) {
-                document.getElementById('modalId').innerText = ui_id;
-                document.getElementById('modalName').innerText = name;
-                document.getElementById('modalAge').innerText = age;
-                document.getElementById('modalYear').innerText = year;
-                document.getElementById('modalSection').innerText = section;
-                document.getElementById('modalMajor').innerText = major;
-                document.getElementById('modalStatus').innerText = status;
-    
-                // Show Bootstrap Modal
-                var studentModal = new bootstrap.Modal(document.getElementById('studentModal'));
-                studentModal.show();
-            }
-        </script>
-    
-    </body>
-    </html>
+    <!-- JavaScript to Handle Modal -->
+    <script>
+        function viewDetails(ui_id, name, age, year, section, major, units, status) {
+            document.getElementById('modalId').innerText = ui_id;
+            document.getElementById('modalName').innerText = name;
+            document.getElementById('modalAge').innerText = age;
+            document.getElementById('modalYear').innerText = year;
+            document.getElementById('modalSection').innerText = section;
+            document.getElementById('modalMajor').innerText = major;
+            document.getElementById('modalUnits').innerText = units;  // Added for Units
+            document.getElementById('modalStatus').innerText = status;
+
+            // Show Bootstrap Modal
+            var studentModal = new bootstrap.Modal(document.getElementById('studentModal'));
+            studentModal.show();
+        }
+    </script>
+
+</body>
+</html>

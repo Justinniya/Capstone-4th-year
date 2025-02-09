@@ -20,12 +20,38 @@
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-       
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .btn-add, .btn-dashboard {
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            color: white;
+        }
+        .btn-add {
+            background-color: #007bff;
+        }
+        .btn-add:hover {
+            background-color: #0056b3;
+        }
+        .btn-dashboard {
+            background-color: #28a745;
+        }
+        .btn-dashboard:hover {
+            background-color: #1e7e34;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Graduating Students List</h2>
+        <div class="button-container">
+            <a href="/add_students" class="btn-add">Add Student</a>
+            <a href="/dashboard" class="btn-dashboard">Students List</a>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -35,6 +61,7 @@
                     <th>Year</th>
                     <th>Section</th>
                     <th>Major</th>
+                    <th>Units</th> <!-- Added Units Column -->
                     <th>Status</th>
                 </tr>
             </thead>
@@ -47,7 +74,8 @@
                     <td>{{ i[3] }}</td>
                     <td>{{ i[4] }}</td>
                     <td>{{ i[5] }}</td>
-                    <td>{{ i[6] }}</td>
+                    <td>{{ i[6] }}</td> <!-- Units Column -->
+                    <td>{{ i[7] }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
