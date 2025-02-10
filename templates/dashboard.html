@@ -30,6 +30,12 @@
         .btn-graduating:hover {
             background-color: #1e7e34;
         }
+        .disabled-link {
+        pointer-events: none;
+        opacity: 0.5;
+        cursor: not-allowed;
+        }
+
     </style>
 </head>
 <body>
@@ -48,11 +54,11 @@
                 <tr>
                     <th style="width: 150px;">UI ID</th>
                     <th>Name</th>
-                    <th>Age</th>
-                    <th>Year</th>
+                    <!-- <th>Age</th> -->
+                    <!-- <th>Year</th> -->
                     <th>Section</th>
                     <th>Major</th>
-                    <th>Units</th>  <!-- New Column -->
+                    <!-- <th>Units</th>  New Column -->
                     <th>Status</th>
                     <th style="width: 300px;">Action</th>
                 </tr>
@@ -62,14 +68,18 @@
                 <tr>
                     <td>{{ i[0] }}</td>
                     <td>{{ i[1] }}</td>
-                    <td>{{ i[2] }}</td>
-                    <td>{{ i[3] }}</td>
+                    <!-- <td>{{ i[2] }}</td> -->
+                    <!-- <td>{{ i[3] }}</td> -->
                     <td>{{ i[4] }}</td>
                     <td>{{ i[5] }}</td>
-                    <td>{{ i[6] }}</td>  <!-- New Column for Units -->
+                    <!-- <td>{{ i[6] }}</td>  New Column for Units -->
                     <td>{{ i[7] }}</td>
                     <td class="action-buttons">
+                        {% if i[7] != 'Graduating' %}
+                        <a disable = 'disable' class="btn-confirm disabled-link" tabindex="-1" href="/confirm/{{ i[0] }}">Confirm</a>
+                        {% else %}
                         <a class="btn-confirm" href="/confirm/{{ i[0] }}">Confirm</a>
+                        {% endif %}
                         <button class="btn-view" onclick="viewDetails('{{ i[0] }}','{{ i[1] }}','{{ i[2] }}', '{{ i[3] }}', '{{ i[4] }}', '{{ i[5] }}', '{{ i[6] }}', '{{ i[7] }}')">View</button>
                         <a class="btn-delete" href="/update/{{ i[0] }}">Update</a>
                     </td>

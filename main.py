@@ -1,5 +1,6 @@
 from flask import Flask,render_template,redirect,request,url_for
 from flask_mysqldb import MySQL
+
 app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -7,10 +8,6 @@ app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'monitoring_database'
 
 mysql = MySQL(app)
-studentsss = [("John Doe", "20", "4th Year", "BSIT ", "Web Development ", "Graduating "),
-            ("Jane Doe", "21", "3rd Year", "BSIT ", "Web Development ", "Graduating "),
-            ("Juan Dela Cruz", "22", "2nd Year", "BSIT ", "Web Development ", "Graduating "),
-            ("Juana Dela Cruz", "23", "1st Year", "BSIT ", "Web Development ", "Graduating ")]
 
 @app.route('/')
 def landing():
@@ -34,10 +31,9 @@ def dashboard():
     cursor.execute(f"UPDATE students SET status = 'Delayed' WHERE units != 'Complete' and year = '4th Year'")
     cursor.execute(f"UPDATE students SET status = 'Ongoing' WHERE units != '120' and year != '4th Year'")
     cursor.execute(f"UPDATE students SET status = 'Graduating' WHERE units = 'Complete'")
-    
     mysql.connection.commit()
     cursor = mysql.connection.cursor()
-    cursor.execute("SELECT * FROM students WHERE confirmation != '1' ORDER BY name")
+    cursor.execute("SELECT * FROM students ORDER BY name")
     students = cursor.fetchall()
 
     return render_template("dashboard.html", students=students)
