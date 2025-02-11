@@ -41,60 +41,44 @@ Antes magsugod, siguruhon nga may ara ka sang masunod nga software kag dependenc
 
 ## Pag-explain sang Code
 
-- **app.py**
+### `app.py`
 
-Flask Initialization: Ang Flask amo ang nagapatakod sang web application.
+- **`Flask`**** Initialization**: Ang `Flask` amo ang nagapatakod sang web application.
+- **Database Configuration**: Ang `app.config` nagaset sang `MYSQL_HOST`, `MYSQL_USER`, `MYSQL_PASSWORD`, kag `MYSQL_DB` para maka-connect sa MySQL database.
+- **Session Management**: Ginagamit ang `session` para sa authentication kag security.
+- **Routes**:
+  - `/` - Landing page nga nagapakita sang login form.
+  - `/login` - Nagacheck sang credentials kag nagapadulong sa dashboard kung sakto.
+  - `/dashboard` - Nagapakita sang tanan nga estudyante kag ilang impormasyon.
+  - `/add_students` - Form para makadugang sang bagong estudyante sa database.
+  - `/update/<id>` - Ginapa-edit ang impormasyon sang estudyante.
+  - `/graduating_list` - Listahan sang mga estudyante nga naga-graduate.
+  - `/confirm/<id>` - Ginatransfer ang estudyante sa graduation list.
 
-Database Configuration: Ang app.config nagaset sang MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, kag MYSQL_DB para maka-connect sa MySQL database.
+### `landing.html`
 
-Session Management: Ginagamit ang session para sa authentication kag security.
+- Nagapakita sang login form.
+- May Bootstrap design para sa responsiveness.
+- May `flash messages` para magpakita sang success o error messages.
 
-Routes:
+### `dashboard.html`
 
-/ - Landing page nga nagapakita sang login form.
+- Nagapakita sang listahan sang mga estudyante.
+- May buttons para sa pag-edit kag pag-confirm sang graduation status.
 
-/login - Nagacheck sang credentials kag nagapadulong sa dashboard kung sakto.
+### `add_students.html`
 
-/dashboard - Nagapakita sang tanan nga estudyante kag ilang impormasyon.
+- Form nga naga-require sang UI ID, Name, Age, Year, Section, Major, Units, kag Status.
+- May validation gamit ang JavaScript para malikawan ang empty fields.
 
-/add_students - Form para makadugang sang bagong estudyante sa database.
+### `graduating_list.html`
 
-/update/<id> - Ginapa-edit ang impormasyon sang estudyante.
+- Nagapakita sang listahan sang mga nag-graduate nga estudyante.
 
-/graduating_list - Listahan sang mga estudyante nga naga-graduate.
+### `update.html`
 
-/confirm/<id> - Ginatransfer ang estudyante sa graduation list.
-
-landing.html
-
-Nagapakita sang login form.
-
-May Bootstrap design para sa responsiveness.
-
-May flash messages para magpakita sang success o error messages.
-
-dashboard.html
-
-Nagapakita sang listahan sang mga estudyante.
-
-May buttons para sa pag-edit kag pag-confirm sang graduation status.
-
-add_students.html
-
-Form nga naga-require sang UI ID, Name, Age, Year, Section, Major, Units, kag Status.
-
-May validation gamit ang JavaScript para malikawan ang empty fields.
-
-graduating_list.html
-
-Nagapakita sang listahan sang mga nag-graduate nga estudyante.
-
-update.html
-
-Nagahatag sang form para ma-update ang impormasyon sang isa ka estudyante.
-
-Ginagamit ang value="{{ result[x] }}" para ma-populate ang existing data.
-
+- Nagahatag sang form para ma-update ang impormasyon sang isa ka estudyante.
+- Ginagamit ang `value="{{ result[x] }}"` para ma-populate ang existing data.
 
 ## File Structure
 ```
