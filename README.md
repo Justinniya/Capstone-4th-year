@@ -39,9 +39,9 @@ Antes magsugod, siguruhon nga may ara ka sang masunod nga software kag dependenc
 - **Pag-update sang estudyante**: I-click ang "Update" button sa dashboard.
 - **Pag-confirm sang graduation**: I-click ang "Confirm" kung ang estudyante qualified na mag-graduate.
 
-Pag-explain sang Code
+## Pag-explain sang Code
 
-app.py
+- **app.py**
 
 Flask Initialization: Ang Flask amo ang nagapatakod sang web application.
 
