@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Monitoring System</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_students.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* Ginahimo ang layout sang page kag design sang elements */
         body {
             font-family: 'Poppins', sans-serif;
             text-align: center;
@@ -40,31 +42,53 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Student Monitoring System</h2>
-        <form id="add_students" method="POST" enctype="multipart/form-data">
-            <input type="text" name="ui_id" placeholder="UI ID (Ex. 11-1111-111111)" required>
-            <input type="text" name="fullname" placeholder="Full Name" required>
-            <input type="number" name="age" placeholder="Age" required>
-            <select name="year">
-                <option value="1st year">1st Year</option>
-                <option value="2nd year">2nd Year</option>
-                <option value="3rd year">3rd Year</option>
-                <option value="4th year" selected>4th Year</option>
-            </select>
-            <input type="text" name="section" placeholder="Section" required>
-            <input type="text" name="major" placeholder="Major" required>
-            <input type="number" name="units" placeholder="Units" required> <!-- New Units Field -->
-            <select name="status">
-                <option value="Ongoing">Ongoing</option>
-                <option value="Graduating">Graduating</option>
-                <option value="Delayed">Delayed</option>
-            </select>
-            <input id="submit" type="submit" value="Add Student">
-        </form>
+    <!-- Sidebar para sa navigation -->
+    <div class="wrapper">
+        <nav class="sidebar">
+            <h3 class="sidebar-title">Student Monitoring</h3>
+            <ul>
+                <li class="{% if page == 'dashboard' %}active{% endif %}">
+                    <a href="/dashboard">📊 Dashboard</a>
+                </li>
+                <li class="{% if page == 'graduating_list' %}active{% endif %}">
+                    <a href="/graduating_list">🎓 Graduating List</a>
+                </li>
+                <li class="{% if page == 'add_students' %}active{% endif %}">
+                    <a href="/add_students">➕ Add Student</a>
+                </li>
+            </ul>
+        </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="container">
+            <h2>Add Student</h2>
+            <form id="add_students" method="POST" enctype="multipart/form-data">
+                <input type="text" name="ui_id" placeholder="UI ID (Ex. 11-1111-111111)" required>
+                <input type="text" name="fullname" placeholder="Full Name" required>
+                <input type="number" name="age" placeholder="Age" required>
+                <select name="year">
+                    <option value="1st year">1st Year</option>
+                    <option value="2nd year">2nd Year</option>
+                    <option value="3rd year">3rd Year</option>
+                    <option value="4th year" selected>4th Year</option>
+                </select>
+                <input type="text" name="section" placeholder="Section" required>
+                <input type="text" name="major" placeholder="Major" required>
+                <input type="number" name="units" placeholder="Units" required>
+                <select name="status">
+                    <option value="Ongoing">Ongoing</option>
+                    <option value="Graduating">Graduating</option>
+                    <option value="Delayed">Delayed</option>
+                </select>
+                <input id="submit" type="submit" value="Add Student">
+            </form>
+        </div>
     </div>
+</div>
 
     <script>
+        // Pag-validate sang form antes mag-submit
         document.getElementById("add_students").addEventListener("submit", function(event) {
             let name = document.querySelector('input[name="fullname"]').value;
             let age = document.querySelector('input[name="age"]').value;

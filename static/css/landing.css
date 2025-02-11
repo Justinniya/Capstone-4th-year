@@ -2,24 +2,23 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: Arial, sans-serif;
 }
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to right, #1e3c72, #2a5298);
+    background: linear-gradient(to right, #4b6cb7, #182848);
 }
-.container {
+.flex-container {
     display: flex;
     width: 80%;
-    max-width: 900px;
+    max-width: 1000px;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 .image-section {
     flex: 1;
@@ -28,12 +27,12 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    color: white;
     text-align: center;
+    color: white;
 }
 .image-section img {
-    width: 80%;
-    max-width: 250px;
+    max-width: 100%;
+    height: auto;
     border-radius: 10px;
 }
 .login-section {
@@ -42,7 +41,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 30px;
 }
 .form-container {
     width: 100%;
@@ -55,32 +54,30 @@ body {
 }
 .styled-input {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     margin: 10px 0;
-    border: 2px solid #ccc;
-    border-radius: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     outline: none;
-    transition: 0.3s;
-}
-.styled-input:focus {
-    border-color: #2a5298;
 }
 .login-btn {
     width: 100%;
-    padding: 12px;
-    background: #2a5298;
+    padding: 10px;
+    background: #4b6cb7;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: 0.3s;
-    font-weight: bold;
+    transition: background 0.3s;
 }
 .login-btn:hover {
-    background: #1e3c72;
+    background: #182848;
 }
 @media (max-width: 768px) {
-    .container {
+    .flex-container {
         flex-direction: column;
+    }
+    .image-section, .login-section {
+        width: 100%;
     }
 }

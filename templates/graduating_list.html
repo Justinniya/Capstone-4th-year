@@ -5,81 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Graduating Students List</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/graduating_list.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            /* background-color: #eef2f3; */
-        }
-        .container {
-            /* max-width: 800px; */
-            margin: 20px auto;
-            /* background: white; */
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-        .btn-add, .btn-dashboard {
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-            color: white;
-        }
-        .btn-add {
-            background-color: #007bff;
-        }
-        .btn-add:hover {
-            background-color: #0056b3;
-        }
-        .btn-dashboard {
-            background-color: #28a745;
-        }
-        .btn-dashboard:hover {
-            background-color: #1e7e34;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Graduating Students List</h2>
-        <div class="button-container">
-            <a href="/add_students" class="btn-add">Add Student</a>
-            <a href="/dashboard" class="btn-dashboard">Students List</a>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <h3 class="sidebar-title">Student Monitoring</h3>
+            <ul>
+                <li class="{% if page == 'dashboard' %}active{% endif %}">
+                    <a href="/dashboard">📊 Dashboard</a>
+                </li>
+                <li class="{% if page == 'graduating_list' %}active{% endif %}">
+                    <a href="/graduating_list">🎓 Graduating List</a>
+                </li>
+                <li class="{% if page == 'add_students' %}active{% endif %}">
+                    <a href="/add_students">➕ Add Student</a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- Main Content -->
+        <div class="content">
+            <div class="container">
+                <h2>Graduating Students List</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>UI ID</th>
+                            <th>Full Name</th>
+                            <th>Age</th>
+                            <th>Year</th>
+                            <th>Section</th>
+                            <th>Major</th>
+                            <th>Units</th> <!-- Added Units Column -->
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in students %}
+                        <tr>
+                            <td>{{ i[0] }}</td>
+                            <td>{{ i[1] }}</td>
+                            <td>{{ i[2] }}</td>
+                            <td>{{ i[3] }}</td>
+                            <td>{{ i[4] }}</td>
+                            <td>{{ i[5] }}</td>
+                            <td>{{ i[6] }}</td> <!-- Units Column -->
+                            <td>{{ i[7] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>UI ID</th>
-                    <th>Full Name</th>
-                    <th>Age</th>
-                    <th>Year</th>
-                    <th>Section</th>
-                    <th>Major</th>
-                    <th>Units</th> <!-- Added Units Column -->
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for i in students %}
-                <tr>
-                    <td>{{ i[0] }}</td>
-                    <td>{{ i[1] }}</td>
-                    <td>{{ i[2] }}</td>
-                    <td>{{ i[3] }}</td>
-                    <td>{{ i[4] }}</td>
-                    <td>{{ i[5] }}</td>
-                    <td>{{ i[6] }}</td> <!-- Units Column -->
-                    <td>{{ i[7] }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
     </div>
 </body>
 </html>
