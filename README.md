@@ -39,6 +39,63 @@ Antes magsugod, siguruhon nga may ara ka sang masunod nga software kag dependenc
 - **Pag-update sang estudyante**: I-click ang "Update" button sa dashboard.
 - **Pag-confirm sang graduation**: I-click ang "Confirm" kung ang estudyante qualified na mag-graduate.
 
+Pag-explain sang Code
+
+app.py
+
+Flask Initialization: Ang Flask amo ang nagapatakod sang web application.
+
+Database Configuration: Ang app.config nagaset sang MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, kag MYSQL_DB para maka-connect sa MySQL database.
+
+Session Management: Ginagamit ang session para sa authentication kag security.
+
+Routes:
+
+/ - Landing page nga nagapakita sang login form.
+
+/login - Nagacheck sang credentials kag nagapadulong sa dashboard kung sakto.
+
+/dashboard - Nagapakita sang tanan nga estudyante kag ilang impormasyon.
+
+/add_students - Form para makadugang sang bagong estudyante sa database.
+
+/update/<id> - Ginapa-edit ang impormasyon sang estudyante.
+
+/graduating_list - Listahan sang mga estudyante nga naga-graduate.
+
+/confirm/<id> - Ginatransfer ang estudyante sa graduation list.
+
+landing.html
+
+Nagapakita sang login form.
+
+May Bootstrap design para sa responsiveness.
+
+May flash messages para magpakita sang success o error messages.
+
+dashboard.html
+
+Nagapakita sang listahan sang mga estudyante.
+
+May buttons para sa pag-edit kag pag-confirm sang graduation status.
+
+add_students.html
+
+Form nga naga-require sang UI ID, Name, Age, Year, Section, Major, Units, kag Status.
+
+May validation gamit ang JavaScript para malikawan ang empty fields.
+
+graduating_list.html
+
+Nagapakita sang listahan sang mga nag-graduate nga estudyante.
+
+update.html
+
+Nagahatag sang form para ma-update ang impormasyon sang isa ka estudyante.
+
+Ginagamit ang value="{{ result[x] }}" para ma-populate ang existing data.
+
+
 ## File Structure
 ```
 monitoring-system/
@@ -63,10 +120,3 @@ monitoring-system/
 - Siguruhon nga nagdagan ang MySQL database antes i-run ang Flask app.
 - Ang session-based authentication nagaseguro nga ang user lang nga authorized ang makasulod.
 - Kung may problema sa database, siguruhon nga naka-configure sang husto ang `app.config` sa `app.py`.
-
-## Lisensya
-Ini nga proyekto ginapanginbulahan sang [MIT License](LICENSE).
-
----
-Kung may mga pamangkot ka o gusto mo magbulig sa development, pwede ka mag-submit sang issue o pull request sa repository! 🚀
-
